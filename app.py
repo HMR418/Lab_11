@@ -17,7 +17,7 @@ from tensorflow.keras import layers, regularizers, callbacks
 
 # Update the file path as needed.
 # If running on a different environment, ensure the file is in the working directory.
-file_path = "lab_11_bridge_data.xlsx"  # Adjust this path if necessary
+file_path = "C:\Users\hayde\OneDrive\Computer Applications\lab_11_bridge_data.xlsx" 
 
 # Load the dataset from the Excel file
 df = pd.read_excel(file_path)
@@ -35,7 +35,6 @@ print("\nMissing values in each column:")
 print(df.isnull().sum())
 
 # Handle missing values:
-# Fill numerical missing values with the mean and categorical with the mode.
 for col in df.columns:
     if df[col].dtype == 'object':
         df[col] = df[col].fillna(df[col].mode()[0])
