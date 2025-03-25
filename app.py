@@ -15,9 +15,12 @@ from tensorflow.keras import layers, regularizers, callbacks
 # 1. Data Exploration and Preprocessing
 # -------------------------------
 
+# Update the file path as needed.
+# If running on a different environment, ensure the file is in the working directory.
+file_path = "lab_11_bridge_data.xlsx"  # Adjust this path if necessary
+
 # Load the dataset from the Excel file
-file_path = r"C:\Users\hayde\OneDrive\Computer Applications\lab_11_bridge_data.xlsx"
-data = pd.read_excel(file_path)
+df = pd.read_excel(file_path)
 
 # Explore the data
 print("First 5 rows:")
@@ -31,8 +34,8 @@ print(df.describe())
 print("\nMissing values in each column:")
 print(df.isnull().sum())
 
-# Handle missing values
-# (For demonstration, we fill numerical missing values with the mean and categorical with the mode)
+# Handle missing values:
+# Fill numerical missing values with the mean and categorical with the mode.
 for col in df.columns:
     if df[col].dtype == 'object':
         df[col] = df[col].fillna(df[col].mode()[0])
@@ -83,7 +86,7 @@ def build_model(input_shape):
         layers.Dense(64, activation='relu', input_shape=(input_shape,),
                      kernel_regularizer=regularizers.l2(0.001)),
         layers.Dropout(0.3),
-        # Second hidden layer
+        # Second hidden layer with L2 regularization and dropout
         layers.Dense(32, activation='relu', kernel_regularizer=regularizers.l2(0.001)),
         layers.Dropout(0.3),
         # Output layer for regression
