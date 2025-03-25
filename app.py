@@ -17,7 +17,7 @@ from tensorflow.keras import layers, regularizers, callbacks
 
 # Update the file path as needed.
 # If running on a different environment, ensure the file is in the working directory.
-file_path = "C:\Users\hayde\OneDrive\Computer Applications\lab_11_bridge_data.xlsx" 
+file_path = r"C:\Users\hayde\OneDrive\Computer Applications\lab_11_bridge_data.xlsx" 
 
 # Load the dataset from the Excel file
 df = pd.read_excel(file_path)
