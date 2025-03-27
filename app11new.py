@@ -1,9 +1,9 @@
 import tensorflow as tf
 
-# When loading the model, map "mse" to the built-in mean_squared_error function
+# Map the "mse" reference to tf.keras.losses.mean_squared_error
 model = tf.keras.models.load_model(
     "tf_bridge_model.h5",
-    custom_objects={"mse": tf.keras.metrics.mean_squared_error}
+    custom_objects={"mse": tf.keras.losses.mean_squared_error}
 )
 
 # 1. Print a summary of the model's layers
@@ -16,8 +16,8 @@ with open("model_architecture.json", "w") as json_file:
 
 print("Model architecture saved to model_architecture.json")
 
-# 3. (Optional) If you want to see all layer weights, you can iterate:
+# 3. (Optional) Iterate over layers to inspect weight tensors
 for layer in model.layers:
     weights = layer.get_weights()
-    # 'weights' is a list of numpy arrays, one for each parameter tensor (kernel, bias, etc.)
     print(layer.name, "has", len(weights), "weight tensors.")
+
