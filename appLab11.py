@@ -17,7 +17,16 @@ from tensorflow.keras import layers, regularizers, callbacks
 
 # Load the dataset from the Excel file
 
-df = pd.read_excel('lab_11_bridge_data.xlsx', sheet_name='lab_11_bridge_data')
+import pandas as pd
+import streamlit as st
+
+uploaded_file = st.file_uploader("Upload the bridge data Excel file", type=["xlsx"])
+
+if uploaded_file:
+    df = pd.read_excel(uploaded_file, sheet_name='lab_11_bridge_data')
+    st.write(df)
+else:
+    st.warning("Please upload the Excel file to proceed.")
 
 # Explore the data
 print("First 5 rows:")
